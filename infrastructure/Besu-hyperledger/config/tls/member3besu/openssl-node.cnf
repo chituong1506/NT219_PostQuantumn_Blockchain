@@ -1,0 +1,30 @@
+[ req ]
+default_bits        = 4096
+default_md          = sha384
+distinguished_name  = req_dn
+req_extensions      = v3_req
+string_mask         = utf8only
+prompt              = no
+
+[ req_dn ]
+countryName                = VN
+stateOrProvinceName        = Ho Chi Minh City
+localityName               = District 1
+organizationName           = MEMBER3BESU Bank
+organizationalUnitName     = Blockchain Node
+commonName                 = member3besu.interbank.local
+emailAddress               = admin@member3besu.bank.vn
+
+[ v3_req ]
+basicConstraints       = CA:FALSE
+keyUsage               = critical,digitalSignature,keyEncipherment
+extendedKeyUsage       = serverAuth,clientAuth
+subjectAltName         = @alt_names
+
+[ alt_names ]
+DNS.1 = member3besu
+DNS.2 = member3besu
+DNS.3 = member3besu.interbank.local
+DNS.4 = localhost
+IP.1  = 172.16.239.18
+IP.2  = 127.0.0.1

@@ -1,0 +1,37 @@
+# RPC node configuration with DUAL HTTP ports
+# - Port 8545: HTTP (no TLS) for internal services (Blockscout, Chainlens)
+# - Port 8555: HTTPS (TLS) for external access
+
+# Network
+network="dev"
+data-path="/opt/besu/data"
+genesis-file="/config/genesis.json"
+bootnodes=[
+    "enode://ac6b1096ca56b9f6d004b779ae3728bf83b8e24f9e8f91df8e7d8f5e8b3f5e8e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e@172.16.239.11:30303"
+]
+
+# P2P
+p2p-enabled=true
+p2p-host="0.0.0.0"
+p2p-port=30303
+max-peers=42
+
+# HTTP RPC without TLS (Internal - Port 8545)
+rpc-http-enabled=true
+rpc-http-host="0.0.0.0"
+rpc-http-port=8545
+rpc-http-cors-origins=["*"]
+rpc-http-api=["ADMIN","ETH","NET","WEB3","QBFT","TXPOOL","TRACE"]
+
+# HTTP RPC with TLS (External - Port 8555)
+# Note: Besu doesn't support multiple HTTP ports directly
+# This config uses non-TLS for Blockscout compatibility
+
+# WebSocket
+rpc-ws-enabled=true
+rpc-ws-host="0.0.0.0"
+rpc-ws-port=8546
+rpc-ws-api=["ETH","NET","WEB3"]
+
+# Logging
+logging="INFO"

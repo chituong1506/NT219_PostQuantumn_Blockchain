@@ -1,0 +1,764 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "canTransfer",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "canReceive",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "dailyLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "AuthorizationUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "bankAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "authorized",
+          "type": "bool"
+        }
+      ],
+      "name": "BankAuthorized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "revoker",
+          "type": "address"
+        }
+      ],
+      "name": "KYCRevoked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "verifier",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "expiresAt",
+          "type": "uint256"
+        }
+      ],
+      "name": "KYCVerified",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "oldKeyHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "newKeyHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "PublicKeyUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "keyHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "UserRegistered",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "authorizations",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "canTransfer",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "canReceive",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "dailyLimit",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "usedToday",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastResetDate",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_bank",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "_authorized",
+          "type": "bool"
+        }
+      ],
+      "name": "authorizeBankAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "authorizedBanks",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "_banks",
+          "type": "address[]"
+        }
+      ],
+      "name": "batchAuthorizeBanks",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "canUserTransfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "deactivateUser",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_keyHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getUserByKeyHash",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "getUserInfo",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "userAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "pqcPublicKey",
+              "type": "bytes"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "keyHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bool",
+              "name": "isActive",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "registeredAt",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lastUpdated",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct PKIRegistry.UserIdentity",
+          "name": "identity",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "isVerified",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "verifiedAt",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "expiresAt",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "kycHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "address",
+              "name": "verifier",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct PKIRegistry.KYCInfo",
+          "name": "kyc",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "canTransfer",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "canReceive",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "dailyLimit",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "usedToday",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lastResetDate",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct PKIRegistry.Authorization",
+          "name": "auth",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "getUserPublicKey",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getUserStats",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "total",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "verified",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "authorized",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "isKYCValid",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "keyHashToAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "kycRecords",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "isVerified",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "verifiedAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expiresAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "kycHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "verifier",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "recordTransfer",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "_pqcPublicKey",
+          "type": "bytes"
+        }
+      ],
+      "name": "registerUser",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "revokeKYC",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "_canTransfer",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "_canReceive",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_dailyLimit",
+          "type": "uint256"
+        }
+      ],
+      "name": "setAuthorization",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalUsers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "_newPqcPublicKey",
+          "type": "bytes"
+        }
+      ],
+      "name": "updatePublicKey",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "users",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "pqcPublicKey",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "keyHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bool",
+          "name": "isActive",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "registeredAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastUpdated",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_kycHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_validityDays",
+          "type": "uint256"
+        }
+      ],
+      "name": "verifyKYC",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_message",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "verifyPQCSignature",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "evm": {
+    "bytecode": {
+      "object": "608060405234801561001057600080fd5b50600580546001600160a01b03191633179055611ee7806100326000396000f3fe608060405234801561001057600080fd5b50600436106101585760003560e01c806376031448116100c3578063cf0e0f9d1161007c578063cf0e0f9d1461040e578063cfe5e1bb14610421578063d1f33aa41461044a578063e7c537641461045d578063f2fde38b14610470578063f8505f7b1461048357600080fd5b8063760314481461030b5780637eb606e81461031e5780638da5cb5b1461039c578063a2969820146103af578063a87430ba146103d2578063bff1f9e1146103f757600080fd5b806353f6ad371161011557806353f6ad37146102505780635b1eab6c1461026f5780636386c1c714610282578063648b8765146102a457806373ac83ef146102e557806374e66d10146102f857600080fd5b80630a38178c1461015d57806311231fe0146101725780631a47767b1461019b57806320dd0213146101ae57806339ba645b146101d15780633a13e1af146101e4575b600080fd5b61017061016b36600461193b565b610496565b005b610185610180366004611994565b6107ac565b60405161019291906119fc565b60405180910390f35b6101706101a9366004611994565b610899565b6101c16101bc366004611a0f565b610936565b6040519015158152602001610192565b6101706101df366004611994565b610a05565b6102266101f2366004611994565b6002602081905260009182526040909120805460018201549282015460039092015460ff8083169461010090930416929085565b6040805195151586529315156020860152928401919091526060830152608082015260a001610192565b6006546040805191825260006020830181905290820152606001610192565b61017061027d366004611a83565b610b2d565b610295610290366004611994565b610c2f565b60405161019293929190611b30565b6102cd6102b2366004611c10565b6000908152600360205260409020546001600160a01b031690565b6040516001600160a01b039091168152602001610192565b6101706102f3366004611c29565b610e87565b61017061030636600461193b565b610f29565b6101c1610319366004611c29565b611119565b61036961032c366004611994565b60016020819052600091825260409091208054918101546002820154600383015460049093015460ff90941693919290916001600160a01b031685565b60408051951515865260208601949094529284019190915260608301526001600160a01b0316608082015260a001610192565b6005546102cd906001600160a01b031681565b6101c16103bd366004611994565b60046020526000908152604090205460ff1681565b6103e56103e0366004611994565b611215565b60405161019296959493929190611c53565b61040060065481565b604051908152602001610192565b6101c161041c366004611994565b6112e1565b6102cd61042f366004611c10565b6003602052600090815260409020546001600160a01b031681565b610170610458366004611cac565b611354565b61017061046b366004611cdf565b61142a565b61017061047e366004611994565b61160f565b610170610491366004611d12565b6116a5565b3360008181526020819052604090206003015460ff16156104fe5760405162461bcd60e51b815260206004820152601760248201527f5573657220616c7265616479207265676973746572656400000000000000000060448201526064015b60405180910390fd5b60008251116105425760405162461bcd60e51b815260206004820152601060248201526f456d707479207075626c6963206b657960801b60448201526064016104f5565b610bb88251111561058c5760405162461bcd60e51b81526020600482015260146024820152735075626c6963206b657920746f6f206c6172676560601b60448201526064016104f5565b8151602080840191909120600081815260039092526040909120546001600160a01b0316156105fd5760405162461bcd60e51b815260206004820152601d60248201527f5075626c6963206b657920616c7265616479207265676973746572656400000060448201526064016104f5565b6040805160c081018252338082526020808301878152838501869052600160608501819052426080860181905260a0860152600093845283835294909220835181546001600160a01b0319166001600160a01b0390911617815591518051939492936106709385019291909101906117eb565b5060408281015160028301556060808401516003808501805492151560ff1990931692909217909155608080860151600486015560a0958601516005909501949094556000868152602091825283812080546001600160a01b031916331790558351958601845280865260019186019190915291840182905283015281016106fb6201518042611d73565b9052336000908152600260208181526040808420855181549387015161ffff1990941690151561ff00191617610100931515939093029290921782558401516001820155606084015191810191909155608090920151600390920191909155600680549161076883611d95565b90915550506040805182815242602082015233917fe932b8f225535323212b28055402c985d3c06bca70a0c4aaa52ee2bf155dc2ac910160405180910390a2505050565b6001600160a01b038116600090815260208190526040902060030154606090829060ff166107ec5760405162461bcd60e51b81526004016104f590611db0565b6001600160a01b0383166000908152602081905260409020600101805461081290611ddd565b80601f016020809104026020016040519081016040528092919081815260200182805461083e90611ddd565b801561088b5780601f106108605761010080835404028352916020019161088b565b820191906000526020600020905b81548152906001019060200180831161086e57829003601f168201915b505050505091505b50919050565b6005546001600160a01b031633146108c35760405162461bcd60e51b81526004016104f590611e12565b6001600160a01b038116600090815260208190526040902060030154819060ff166109005760405162461bcd60e51b81526004016104f590611db0565b506001600160a01b0316600090815260208181526040808320600301805460ff1916905560029091529020805461ffff19169055565b6001600160a01b038316600090815260208190526040812060030154849060ff166109735760405162461bcd60e51b81526004016104f590611db0565b60008451116109b45760405162461bcd60e51b815260206004820152600d60248201526c456d707479206d65737361676560981b60448201526064016104f5565b60008351116109f75760405162461bcd60e51b815260206004820152600f60248201526e456d707479207369676e617475726560881b60448201526064016104f5565b505051610974111592915050565b3360009081526004602052604090205460ff16610a345760405162461bcd60e51b81526004016104f590611e36565b6001600160a01b038116600090815260208190526040902060030154819060ff16610a715760405162461bcd60e51b81526004016104f590611db0565b6001600160a01b03821660009081526001602052604090205460ff16610acc5760405162461bcd60e51b815260206004820152601060248201526f12d650c81b9bdd081d995c9a599a595960821b60448201526064016104f5565b6001600160a01b0382166000818152600160209081526040808320805460ff1990811690915560029092528083208054909216909155513392917f78bb145ee492fe6a233227a728eed873e98371bcf51d46ce3a6827a30018355291a35050565b6005546001600160a01b03163314610b575760405162461bcd60e51b81526004016104f590611e12565b60005b8151811015610c2b57600160046000848481518110610b7b57610b7b611e64565b60200260200101516001600160a01b03166001600160a01b0316815260200190815260200160002060006101000a81548160ff021916908315150217905550818181518110610bcc57610bcc611e64565b60200260200101516001600160a01b03167f8e3f06f96eeafbda3e9da0de573d78b3aeb414abbda7cc39f04dcb9e9ee926b46001604051610c11911515815260200190565b60405180910390a280610c2381611d95565b915050610b5a565b5050565b6040805160c081018252600080825260606020808401829052838501839052818401839052608080850184905260a080860185905286518082018852858152808401869052808801869052808501869052808301869052875191820188528582529281018590529586018490529185018390529084019190915290916001600160a01b038416600090815260208190526040902060030154849060ff16610ce85760405162461bcd60e51b81526004016104f590611db0565b6001600160a01b0380861660009081526020818152604080832060018084528285206002855294839020835160c08101909452825490961683528101805491959386929084019190610d3990611ddd565b80601f0160208091040260200160405190810160405280929190818152602001828054610d6590611ddd565b8015610db25780601f10610d8757610100808354040283529160200191610db2565b820191906000526020600020905b815481529060010190602001808311610d9557829003601f168201915b505050918352505060028281015460208084019190915260038085015460ff9081161515604080870191909152600480880154606080890191909152600590980154608097880152815160a080820184528c548516151582526001808e0154838901528d890154838601528d870154838c01529c909201546001600160a01b031681890152825191820183528a54808516151583526101009004909316151594810194909452988801549883019890985291860154938101939093529390930154928101929092529891975095509350505050565b6001600160a01b03821660009081526020819052604090206003015460ff16610ec25760405162461bcd60e51b81526004016104f590611db0565b6001600160a01b038216600090815260026020526040812090610ee86201518042611d73565b90508160030154811115610f09576002820183905560038201819055610f23565b82826002016000828254610f1d9190611e7a565b90915550505b50505050565b3360008181526020819052604090206003015460ff16610f5b5760405162461bcd60e51b81526004016104f590611db0565b6000825111610f9f5760405162461bcd60e51b815260206004820152601060248201526f456d707479207075626c6963206b657960801b60448201526064016104f5565b610bb882511115610fe95760405162461bcd60e51b81526020600482015260146024820152735075626c6963206b657920746f6f206c6172676560601b60448201526064016104f5565b8151602080840191909120600081815260039092526040909120546001600160a01b03161561105a5760405162461bcd60e51b815260206004820152601960248201527f5075626c6963206b657920616c726561647920696e207573650000000000000060448201526064016104f5565b336000908152602081815260408083206002810154808552600384529190932080546001600160a01b03191690558551909161109d9160018501918801906117eb565b5060028201839055426005830181905560008481526003602090815260409182902080546001600160a01b03191633908117909155825185815291820187905291810192909252907fb18eadc99da6ba0290e9f60ca54ed0471a7a7dcb6ee7373965b86c7dd7f96c669060600160405180910390a25050505050565b6001600160a01b03821660009081526020819052604081206003015460ff166111445750600061120f565b61114d836112e1565b6111595750600061120f565b6001600160a01b038316600090815260026020818152604092839020835160a081018552815460ff80821615158084526101009092041615159382019390935260018201549481019490945291820154606084015260039091015460808301526111c757600091505061120f565b60006111d66201518042611d73565b905081608001518111156111f3575060400151821115905061120f565b81604001518483606001516112089190611e7a565b1115925050505b92915050565b600060208190529081526040902080546001820180546001600160a01b03909216929161124190611ddd565b80601f016020809104026020016040519081016040528092919081815260200182805461126d90611ddd565b80156112ba5780601f1061128f576101008083540402835291602001916112ba565b820191906000526020600020905b81548152906001019060200180831161129d57829003601f168201915b505050506002830154600384015460048501546005909501549394919360ff909116925086565b6001600160a01b038082166000908152600160208181526040808420815160a081018352815460ff1615801580835295830154948201949094526002820154928101929092526003810154606083015260040154909416608085015291929161134d5750806040015142105b9392505050565b6005546001600160a01b0316331461137e5760405162461bcd60e51b81526004016104f590611e12565b6001600160a01b0382166113cb5760405162461bcd60e51b8152602060048201526014602482015273496e76616c69642062616e6b206164647265737360601b60448201526064016104f5565b6001600160a01b038216600081815260046020908152604091829020805460ff191685151590811790915591519182527f8e3f06f96eeafbda3e9da0de573d78b3aeb414abbda7cc39f04dcb9e9ee926b4910160405180910390a25050565b3360009081526004602052604090205460ff166114595760405162461bcd60e51b81526004016104f590611e36565b6001600160a01b038316600090815260208190526040902060030154839060ff166114965760405162461bcd60e51b81526004016104f590611db0565b826114d65760405162461bcd60e51b815260206004820152601060248201526f092dcecc2d8d2c84096b28640d0c2e6d60831b60448201526064016104f5565b6000821180156114e8575061016d8211155b6115345760405162461bcd60e51b815260206004820152601760248201527f496e76616c69642076616c696469747920706572696f6400000000000000000060448201526064016104f5565b60006115438362015180611e92565b61154d9042611e7a565b6040805160a0810182526001808252426020808401918252838501868152606085018b815233608087018181526001600160a01b038f811660008181528988528b902099518a5460ff1916901515178a5596519789019790975592516002880155905160038701559051600490950180546001600160a01b0319169590941694909417909255925184815293945090927fd8b879062b804f0a2bd0b75ba02d6dbd9999fc9971ece871c8d1aedb447c5f93910160405180910390a35050505050565b6005546001600160a01b031633146116395760405162461bcd60e51b81526004016104f590611e12565b6001600160a01b0381166116835760405162461bcd60e51b815260206004820152601160248201527024b73b30b634b2103732bb9037bbb732b960791b60448201526064016104f5565b600580546001600160a01b0319166001600160a01b0392909216919091179055565b3360009081526004602052604090205460ff166116d45760405162461bcd60e51b81526004016104f590611e36565b6001600160a01b038416600090815260208190526040902060030154849060ff166117115760405162461bcd60e51b81526004016104f590611db0565b831561175c57611720856112e1565b61175c5760405162461bcd60e51b815260206004820152600d60248201526c12d650c81b9bdd081d985b1a59609a1b60448201526064016104f5565b6001600160a01b0385166000818152600260209081526040918290208054871515610100810261ff00198b151590811661ffff1990941693909317178355600183018890558451918252928101929092529181018590529091907fe09f351285582300d5adeecdd1c078eb70f18994db120594db4e76c72ca955f59060600160405180910390a2505050505050565b8280546117f790611ddd565b90600052602060002090601f016020900481019282611819576000855561185f565b82601f1061183257805160ff191683800117855561185f565b8280016001018555821561185f579182015b8281111561185f578251825591602001919060010190611844565b5061186b92915061186f565b5090565b5b8082111561186b5760008155600101611870565b634e487b7160e01b600052604160045260246000fd5b604051601f8201601f1916810167ffffffffffffffff811182821017156118c3576118c3611884565b604052919050565b600082601f8301126118dc57600080fd5b813567ffffffffffffffff8111156118f6576118f6611884565b611909601f8201601f191660200161189a565b81815284602083860101111561191e57600080fd5b816020850160208301376000918101602001919091529392505050565b60006020828403121561194d57600080fd5b813567ffffffffffffffff81111561196457600080fd5b611970848285016118cb565b949350505050565b80356001600160a01b038116811461198f57600080fd5b919050565b6000602082840312156119a657600080fd5b61134d82611978565b6000815180845260005b818110156119d5576020818501810151868301820152016119b9565b818111156119e7576000602083870101525b50601f01601f19169290920160200192915050565b60208152600061134d60208301846119af565b600080600060608486031215611a2457600080fd5b611a2d84611978565b9250602084013567ffffffffffffffff80821115611a4a57600080fd5b611a56878388016118cb565b93506040860135915080821115611a6c57600080fd5b50611a79868287016118cb565b9150509250925092565b60006020808385031215611a9657600080fd5b823567ffffffffffffffff80821115611aae57600080fd5b818501915085601f830112611ac257600080fd5b813581811115611ad457611ad4611884565b8060051b9150611ae584830161189a565b8181529183018401918481019088841115611aff57600080fd5b938501935b83851015611b2457611b1585611978565b82529385019390850190611b04565b98975050505050505050565b61016080825284516001600160a01b031690820152602084015160c0610180830152600090611b636102208401826119af565b60408701516101a0850152606087015115156101c085015260808701516101e085015260a08701516102008501529150611bd5905060208301858051151582526020808201519083015260408082015190830152606080820151908301526080908101516001600160a01b0316910152565b8251151560c08301526020830151151560e0830152604083015161010083015260608301516101208301526080830151610140830152611970565b600060208284031215611c2257600080fd5b5035919050565b60008060408385031215611c3c57600080fd5b611c4583611978565b946020939093013593505050565b6001600160a01b038716815260c060208201819052600090611c77908301886119af565b6040830196909652509215156060840152608083019190915260a09091015292915050565b8035801515811461198f57600080fd5b60008060408385031215611cbf57600080fd5b611cc883611978565b9150611cd660208401611c9c565b90509250929050565b600080600060608486031215611cf457600080fd5b611cfd84611978565b95602085013595506040909401359392505050565b60008060008060808587031215611d2857600080fd5b611d3185611978565b9350611d3f60208601611c9c565b9250611d4d60408601611c9c565b9396929550929360600135925050565b634e487b7160e01b600052601160045260246000fd5b600082611d9057634e487b7160e01b600052601260045260246000fd5b500490565b6000600019821415611da957611da9611d5d565b5060010190565b602080825260139082015272155cd95c881b9bdd081c9959da5cdd195c9959606a1b604082015260600190565b600181811c90821680611df157607f821691505b6020821081141561089357634e487b7160e01b600052602260045260246000fd5b6020808252600a908201526927b7363c9037bbb732b960b11b604082015260600190565b6020808252601490820152734f6e6c7920617574686f72697a65642062616e6b60601b604082015260600190565b634e487b7160e01b600052603260045260246000fd5b60008219821115611e8d57611e8d611d5d565b500190565b6000816000190483118215151615611eac57611eac611d5d565b50029056fea2646970667358221220f4bf3d2af39a531870c35944ca2103b75cd40c3336313ae00e6302366bcc1b2164736f6c634300080a0033"
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"canTransfer\",\"type\":\"bool\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"canReceive\",\"type\":\"bool\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"dailyLimit\",\"type\":\"uint256\"}],\"name\":\"AuthorizationUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"bankAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"authorized\",\"type\":\"bool\"}],\"name\":\"BankAuthorized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"revoker\",\"type\":\"address\"}],\"name\":\"KYCRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"expiresAt\",\"type\":\"uint256\"}],\"name\":\"KYCVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"oldKeyHash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newKeyHash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"PublicKeyUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"keyHash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"UserRegistered\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"authorizations\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"canTransfer\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"canReceive\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"dailyLimit\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"usedToday\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastResetDate\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_bank\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_authorized\",\"type\":\"bool\"}],\"name\":\"authorizeBankAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"authorizedBanks\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_banks\",\"type\":\"address[]\"}],\"name\":\"batchAuthorizeBanks\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"canUserTransfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"deactivateUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_keyHash\",\"type\":\"bytes32\"}],\"name\":\"getUserByKeyHash\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"getUserInfo\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"pqcPublicKey\",\"type\":\"bytes\"},{\"internalType\":\"bytes32\",\"name\":\"keyHash\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"isActive\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"registeredAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastUpdated\",\"type\":\"uint256\"}],\"internalType\":\"struct PKIRegistry.UserIdentity\",\"name\":\"identity\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"bool\",\"name\":\"isVerified\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"verifiedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"expiresAt\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"kycHash\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"}],\"internalType\":\"struct PKIRegistry.KYCInfo\",\"name\":\"kyc\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"bool\",\"name\":\"canTransfer\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"canReceive\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"dailyLimit\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"usedToday\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastResetDate\",\"type\":\"uint256\"}],\"internalType\":\"struct PKIRegistry.Authorization\",\"name\":\"auth\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"getUserPublicKey\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getUserStats\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"total\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"verified\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"authorized\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"isKYCValid\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"keyHashToAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"kycRecords\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"isVerified\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"verifiedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"expiresAt\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"kycHash\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"recordTransfer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_pqcPublicKey\",\"type\":\"bytes\"}],\"name\":\"registerUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"revokeKYC\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_canTransfer\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"_canReceive\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"_dailyLimit\",\"type\":\"uint256\"}],\"name\":\"setAuthorization\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalUsers\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_newPqcPublicKey\",\"type\":\"bytes\"}],\"name\":\"updatePublicKey\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"users\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"pqcPublicKey\",\"type\":\"bytes\"},{\"internalType\":\"bytes32\",\"name\":\"keyHash\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"isActive\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"registeredAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastUpdated\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"_kycHash\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"_validityDays\",\"type\":\"uint256\"}],\"name\":\"verifyKYC\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"_message\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"_signature\",\"type\":\"bytes\"}],\"name\":\"verifyPQCSignature\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Public Key Infrastructure Registry for Interbank Blockchain\",\"kind\":\"dev\",\"methods\":{\"authorizeBankAddress(address,bool)\":{\"details\":\"Authorize a bank (only owner)\",\"params\":{\"_authorized\":\"Authorization status\",\"_bank\":\"Bank address\"}},\"batchAuthorizeBanks(address[])\":{\"details\":\"Batch authorize banks\",\"params\":{\"_banks\":\"Array of bank addresses\"}},\"canUserTransfer(address,uint256)\":{\"details\":\"Check if user can transfer\",\"params\":{\"_amount\":\"Amount to transfer (wei)\",\"_user\":\"User address\"},\"returns\":{\"_0\":\"canTransfer True if authorized and within limit\"}},\"deactivateUser(address)\":{\"details\":\"Deactivate user account (emergency only)\",\"params\":{\"_user\":\"User address\"}},\"getUserByKeyHash(bytes32)\":{\"details\":\"Get user by key hash\",\"params\":{\"_keyHash\":\"Hash of public key\"},\"returns\":{\"_0\":\"userAddress User's address\"}},\"getUserInfo(address)\":{\"details\":\"Get full user info\",\"params\":{\"_user\":\"User address\"},\"returns\":{\"auth\":\"Authorization information\",\"identity\":\"User identity information\",\"kyc\":\"KYC information\"}},\"getUserPublicKey(address)\":{\"details\":\"Get user's PQC public key\",\"params\":{\"_user\":\"User address\"},\"returns\":{\"_0\":\"publicKey PQC public key bytes\"}},\"getUserStats()\":{\"details\":\"Get user statistics\",\"returns\":{\"authorized\":\"Total users with transfer permission\",\"total\":\"Total registered users\",\"verified\":\"Total KYC verified users\"}},\"isKYCValid(address)\":{\"details\":\"Check if user's KYC is valid\",\"params\":{\"_user\":\"User address\"},\"returns\":{\"_0\":\"isValid True if KYC is verified and not expired\"}},\"recordTransfer(address,uint256)\":{\"details\":\"Record transfer usage (call from transfer contract)\",\"params\":{\"_amount\":\"Amount transferred\",\"_user\":\"User address\"}},\"registerUser(bytes)\":{\"details\":\"Register new user with PQC public key\",\"params\":{\"_pqcPublicKey\":\"Dilithium3 public key (bytes)\"}},\"revokeKYC(address)\":{\"details\":\"Revoke user's KYC\",\"params\":{\"_user\":\"User address\"}},\"setAuthorization(address,bool,bool,uint256)\":{\"details\":\"Set user authorization (only authorized banks)\",\"params\":{\"_canReceive\":\"Can receive transfers\",\"_canTransfer\":\"Can initiate transfers\",\"_dailyLimit\":\"Daily transfer limit (wei)\",\"_user\":\"User address\"}},\"transferOwnership(address)\":{\"details\":\"Transfer ownership\",\"params\":{\"_newOwner\":\"New owner address\"}},\"updatePublicKey(bytes)\":{\"details\":\"Update user's PQC public key (key rotation)\",\"params\":{\"_newPqcPublicKey\":\"New Dilithium3 public key\"}},\"verifyKYC(address,bytes32,uint256)\":{\"details\":\"Verify user's KYC (only authorized banks)\",\"params\":{\"_kycHash\":\"Hash of KYC data (privacy-preserving)\",\"_user\":\"User address\",\"_validityDays\":\"Validity period in days\"}},\"verifyPQCSignature(address,bytes,bytes)\":{\"details\":\"Verify PQC signature (placeholder - actual verification off-chain via KSM)\",\"params\":{\"_message\":\"Message that was signed\",\"_signature\":\"PQC signature\",\"_user\":\"User address\"},\"returns\":{\"_0\":\"isValid True if signature is valid\"}}},\"title\":\"PKIRegistry\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Manages PQC public keys, KYC status, and user authorization  Features: - Store Dilithium3 public keys - KYC compliance tracking - Account ownership verification - Key rotation support - Authorization management\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"PKIRegistry.sol\":\"PKIRegistry\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"PKIRegistry.sol\":{\"keccak256\":\"0x61e040e478addf338f7d27fad84f3c8de883ea7f1006da89631c7d28afb0312e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3dbd3fe53fd1936dc9b768ae84dcc59d727745351ded13d923eb8fff50ad1323\",\"dweb:/ipfs/QmQTV9pNvARi7h9sQJVA5hWjmZjpLhZ8tUNPoKtyTTHZYP\"]}},\"version\":1}"
+}

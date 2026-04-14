@@ -1,0 +1,11 @@
+node_modules/
+.env
+.env.local
+
+infrastructure/**/logs/
+infrastructure/**/data/
+*.lock
+*.log
+
+.DS_Store
+Thums.db

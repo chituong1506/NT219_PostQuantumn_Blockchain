@@ -1,0 +1,26 @@
+version: "3.6"
+
+# Overlay compose file: reverse proxy terminating TLS (SBV CA) for HTTP-only services
+services:
+  interbank-proxy:
+    image: nginx:1.25-alpine
+    container_name: interbank-proxy
+    ports:
+      - "8443:443"
+    volumes:
+      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./config/tls/reverse-proxy:/etc/nginx/tls:ro
+    depends_on:
+      - ethsignerProxy
+      - ksm
+    # Allow reaching host services (GUI at 3000, zkp-prover at 8081 if running on host)
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      quorum-dev-quickstart:
+        ipv4_address: 172.16.239.70
+
+networks:
+  quorum-dev-quickstart:
+    external: true
+

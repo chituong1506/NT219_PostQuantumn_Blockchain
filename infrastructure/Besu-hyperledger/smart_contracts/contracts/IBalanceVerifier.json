@@ -1,0 +1,70 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "proofHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "isProofVerified",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "commitmentHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes",
+              "name": "proofBytes",
+              "type": "bytes"
+            },
+            {
+              "internalType": "address",
+              "name": "userAddress",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct IBalanceVerifier.BalanceProof",
+          "name": "proof",
+          "type": "tuple"
+        }
+      ],
+      "name": "verifyProof",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "evm": {
+    "bytecode": {
+      "object": ""
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"proofHash\",\"type\":\"bytes32\"}],\"name\":\"isProofVerified\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"commitmentHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"proofBytes\",\"type\":\"bytes\"},{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"}],\"internalType\":\"struct IBalanceVerifier.BalanceProof\",\"name\":\"proof\",\"type\":\"tuple\"}],\"name\":\"verifyProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Interface for BalanceVerifier contract\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"InterbankTransfer.sol\":\"IBalanceVerifier\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"InterbankTransfer.sol\":{\"keccak256\":\"0x823904e78272e42e84949fae5c529f3648635ba801852a8b6257bb38a697ed77\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://be240095258b676255b7e2d79f727596e274cb64845e165cad329d063bfff777\",\"dweb:/ipfs/QmSmt7rvuMn5HnBDHFm3LeqnST8YERkBZZJerBTJ8oF36y\"]}},\"version\":1}"
+}

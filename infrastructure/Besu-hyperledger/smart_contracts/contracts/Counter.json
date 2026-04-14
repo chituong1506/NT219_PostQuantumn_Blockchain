@@ -1,0 +1,37 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "decrementCounter",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCount",
+      "outputs": [
+        {
+          "internalType": "int256",
+          "name": "",
+          "type": "int256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "incrementCounter",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "evm": {
+    "bytecode": {
+      "object": "60806040526000805534801561001457600080fd5b50610164806100246000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80635b34b96614610046578063a87d942c14610050578063f5c5ad8314610065575b600080fd5b61004e61006d565b005b60005460405190815260200160405180910390f35b61004e610086565b600160008082825461007f91906100ae565b9091555050565b600160008082825461007f91906100ef565b634e487b7160e01b600052601160045260246000fd5b600080821280156001600160ff1b03849003851316156100d0576100d0610098565b600160ff1b83900384128116156100e9576100e9610098565b50500190565b60008083128015600160ff1b85018412161561010d5761010d610098565b6001600160ff1b038401831381161561012857610128610098565b5050039056fea26469706673582212201b4e9ff231ad0bd93e6f4288a9b003d4ebefcaad7c0a14c9861cb2d994f8e8c764736f6c634300080a0033"
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"decrementCounter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getCount\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"incrementCounter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"Counter.sol\":\"Counter\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"Counter.sol\":{\"keccak256\":\"0x5138c34bf00e3a3b48b5eef16ef31355903f13bb7c004317ab90ac4fbf356b3e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ee5f21777f8caa871fdefd9cf203f31ca21785a49026fa1e609f2a806a826b7f\",\"dweb:/ipfs/QmVzMkTwDcgTZrbYxhtSPypqHRfnCioHE41Y7VfGC6ZoP2\"]}},\"version\":1}"
+}

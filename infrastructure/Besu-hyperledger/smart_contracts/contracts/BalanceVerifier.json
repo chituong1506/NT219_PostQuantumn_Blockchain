@@ -1,0 +1,198 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "proofHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "ProofRejected",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "proofHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "commitmentHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "ProofVerified",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "commitmentHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes",
+              "name": "proofBytes",
+              "type": "bytes"
+            },
+            {
+              "internalType": "address",
+              "name": "userAddress",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct BalanceVerifier.BalanceProof",
+          "name": "proof",
+          "type": "tuple"
+        }
+      ],
+      "name": "getProofHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "proofHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "isProofVerified",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "verifiedProofs",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes32",
+              "name": "commitmentHash",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bytes",
+              "name": "proofBytes",
+              "type": "bytes"
+            },
+            {
+              "internalType": "address",
+              "name": "userAddress",
+              "type": "address"
+            }
+          ],
+          "internalType": "struct BalanceVerifier.BalanceProof",
+          "name": "proof",
+          "type": "tuple"
+        }
+      ],
+      "name": "verifyProof",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "verified",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "evm": {
+    "bytecode": {
+      "object": "608060405234801561001057600080fd5b50600180546001600160a01b0319163317905561064b806100326000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c8063176d80c41461005c57806342c8fd001461009457806364e6867d146100b7578063789eefaf146100ca5780638da5cb5b146100eb575b600080fd5b61007f61006a36600461041f565b60006020819052908152604090205460ff1681565b60405190151581526020015b60405180910390f35b61007f6100a236600461041f565b60009081526020819052604090205460ff1690565b61007f6100c53660046104c4565b610116565b6100dd6100d83660046104c4565b6103a8565b60405190815260200161008b565b6001546100fe906001600160a01b031681565b6040516001600160a01b03909116815260200161008b565b600080826000015183602001518460400151856060015160405160200161014094939291906105a7565b60408051601f19818403018152918152815160209283012060008181529283905291205490915060ff16156101d957807f6d00d60149975f22699f47ddb8a115b5ca6a019d7d14102a8da7b14085e70bea6040516101c890602080825260169082015275141c9bdbd988185b1c9958591e481d995c9a599a595960521b604082015260600190565b60405180910390a250600092915050565b825161022c5760405162461bcd60e51b815260206004820152601d60248201527f416d6f756e74206d7573742062652067726561746572207468616e203000000060448201526064015b60405180910390fd5b60608301516001600160a01b031661027d5760405162461bcd60e51b8152602060048201526014602482015273496e76616c69642075736572206164647265737360601b6044820152606401610223565b6000836040015151116102c05760405162461bcd60e51b815260206004820152600b60248201526a22b6b83a3c90383937b7b360a91b6044820152606401610223565b60006102cb846103ee565b905080156103465760008281526020818152604091829020805460ff1916600117905560608601518651878301518451918252928101929092526001600160a01b03169184917fe73884e97d63919fabc5b496091937beb2440780d29b1f6f545fd55a875effd6910160405180910390a35060019392505050565b817f6d00d60149975f22699f47ddb8a115b5ca6a019d7d14102a8da7b14085e70bea604051610396906020808252600d908201526c24b73b30b634b210383937b7b360991b604082015260600190565b60405180910390a25060009392505050565b600081600001518260200151836040015184606001516040516020016103d194939291906105a7565b604051602081830303815290604052805190602001209050919050565b60006020826040015151101561040657506000919050565b602082015161041757506000919050565b506001919050565b60006020828403121561043157600080fd5b5035919050565b634e487b7160e01b600052604160045260246000fd5b6040516080810167ffffffffffffffff8111828210171561047157610471610438565b60405290565b604051601f8201601f1916810167ffffffffffffffff811182821017156104a0576104a0610438565b604052919050565b80356001600160a01b03811681146104bf57600080fd5b919050565b600060208083850312156104d757600080fd5b823567ffffffffffffffff808211156104ef57600080fd5b908401906080828703121561050357600080fd5b61050b61044e565b82358152838301358482015260408301358281111561052957600080fd5b8301601f8101881361053a57600080fd5b80358381111561054c5761054c610438565b61055e601f8201601f19168701610477565b9350808452888682840101111561057457600080fd5b808683018786013760008682860101525050816040820152610598606084016104a8565b60608201529695505050505050565b848152600060208581840152845160005b818110156105d4578681018301518582016040015282016105b8565b818111156105e6576000604083870101525b5060609490941b6bffffffffffffffffffffffff1916604093909401928301939093525060540194935050505056fea26469706673582212200ad3a77b8f60692f1eb9cdfe81a8458b50492358a899ecf5995a260fdd74069264736f6c634300080a0033"
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"proofHash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"}],\"name\":\"ProofRejected\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"proofHash\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"commitmentHash\",\"type\":\"bytes32\"}],\"name\":\"ProofVerified\",\"type\":\"event\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"commitmentHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"proofBytes\",\"type\":\"bytes\"},{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"}],\"internalType\":\"struct BalanceVerifier.BalanceProof\",\"name\":\"proof\",\"type\":\"tuple\"}],\"name\":\"getProofHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"proofHash\",\"type\":\"bytes32\"}],\"name\":\"isProofVerified\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"verifiedProofs\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"commitmentHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"proofBytes\",\"type\":\"bytes\"},{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"}],\"internalType\":\"struct BalanceVerifier.BalanceProof\",\"name\":\"proof\",\"type\":\"tuple\"}],\"name\":\"verifyProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"verified\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Smart contract \\u0111\\u1ec3 verify ZKP proof cho balance > amount  Ch\\u1ee9c n\\u0103ng: - Verify balance proof t\\u1eeb ZKP prover - L\\u01b0u tr\\u1eef verified proofs - T\\u00edch h\\u1ee3p v\\u1edbi InterbankTransfer contract\",\"kind\":\"dev\",\"methods\":{\"getProofHash((uint256,bytes32,bytes,address))\":{\"details\":\"Get proof hash t\\u1eeb proof data\",\"params\":{\"proof\":\"Balance proof\"},\"returns\":{\"_0\":\"proofHash Hash c\\u1ee7a proof\"}},\"isProofVerified(bytes32)\":{\"details\":\"Check if proof has been verified\",\"params\":{\"proofHash\":\"Hash c\\u1ee7a proof\"},\"returns\":{\"_0\":\"verified True n\\u1ebfu \\u0111\\u00e3 \\u0111\\u01b0\\u1ee3c verify\"}},\"verifyProof((uint256,bytes32,bytes,address))\":{\"details\":\"Verify balance proof\",\"params\":{\"proof\":\"Balance proof t\\u1eeb prover\"},\"returns\":{\"verified\":\"True n\\u1ebfu proof h\\u1ee3p l\\u1ec7\"}}},\"title\":\"BalanceVerifier\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"BalanceVerifier.sol\":\"BalanceVerifier\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"BalanceVerifier.sol\":{\"keccak256\":\"0x85159ec3933ea3874899208455d2f5c094d8ded8fa466f6f94ffbcdb3f1dc044\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://42ced9d07e47a6d7ea3158df01f7cc041ed60c871de91144a785206c8d3e3d91\",\"dweb:/ipfs/QmV2x36m7AvmPdMj3QWoUjq56m7ZoF4Mjyt19wrvvdXtri\"]}},\"version\":1}"
+}

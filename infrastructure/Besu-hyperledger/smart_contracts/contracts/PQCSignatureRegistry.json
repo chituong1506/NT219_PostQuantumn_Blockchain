@@ -1,0 +1,175 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "transactionId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "signatureHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "algorithm",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "signatureSize",
+          "type": "uint256"
+        }
+      ],
+      "name": "PQCSignatureStored",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "txId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPQCSignature",
+      "outputs": [
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        },
+        {
+          "internalType": "string",
+          "name": "algorithm",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "signatureHash",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "txId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getPQCSignatureHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "interbankContract",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_interbank",
+          "type": "address"
+        }
+      ],
+      "name": "setInterbankContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "txId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "pqcSignature",
+          "type": "bytes"
+        },
+        {
+          "internalType": "string",
+          "name": "algorithm",
+          "type": "string"
+        }
+      ],
+      "name": "storePQCSignature",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "txId",
+          "type": "uint256"
+        }
+      ],
+      "name": "transactionHasPQCSignature",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "evm": {
+    "bytecode": {
+      "object": "608060405234801561001057600080fd5b50600080546001600160a01b031916331790556109cf806100326000396000f3fe608060405234801561001057600080fd5b506004361061007d5760003560e01c806390d9bc161161005b57806390d9bc161461010e578063cbe6163214610121578063cc04db4114610136578063e757204f1461015757600080fd5b8063122712721461008257806342077d7b146100ad5780638da5cb5b146100e3575b600080fd5b61009561009036600461076d565b61016a565b6040516100a4939291906107d3565b60405180910390f35b6100d36100bb36600461076d565b60009081526002602052604090206003015460ff1690565b60405190151581526020016100a4565b6000546100f6906001600160a01b031681565b6040516001600160a01b0390911681526020016100a4565b6001546100f6906001600160a01b031681565b61013461012f366004610852565b61033e565b005b61014961014436600461076d565b6105b1565b6040519081526020016100a4565b6101346101653660046108cc565b610623565b600081815260026020526040812060030154606091829160ff166101cf5760405162461bcd60e51b815260206004820152601760248201527609cde40a0a28640e6d2cedcc2e8eae4ca40ccdee440e8f604b1b60448201526064015b60405180910390fd5b6000848152600260205260408082208151608081019092528054829082906101f6906108fc565b80601f0160208091040260200160405190810160405280929190818152602001828054610222906108fc565b801561026f5780601f106102445761010080835404028352916020019161026f565b820191906000526020600020905b81548152906001019060200180831161025257829003601f168201915b50505050508152602001600182018054610288906108fc565b80601f01602080910402602001604051908101604052809291908181526020018280546102b4906108fc565b80156103015780601f106102d657610100808354040283529160200191610301565b820191906000526020600020905b8154815290600101906020018083116102e457829003601f168201915b5050509183525050600282015460208083019190915260039092015460ff1615156040918201528251918301519201519097919650945092505050565b6001546001600160a01b031633146103985760405162461bcd60e51b815260206004820152601760248201527f4f6e6c7920496e74657262616e6b20636f6e747261637400000000000000000060448201526064016101c6565b600085116103d75760405162461bcd60e51b815260206004820152600c60248201526b125b9d985b1a59081d1e125960a21b60448201526064016101c6565b826104165760405162461bcd60e51b815260206004820152600f60248201526e456d707479207369676e617475726560881b60448201526064016101c6565b806104555760405162461bcd60e51b815260206004820152600f60248201526e456d70747920616c676f726974686d60881b60448201526064016101c6565b60008484848460405160200161046e9493929190610937565b60408051601f19818403018152828252805160209182012060a0601f890183900490920284018201909252608083018781529193508291908890889081908501838280828437600092019190915250505090825250604080516020601f8701819004810282018101909252858152918101919086908690819084018382808284376000920182905250938552505050602080830185905260016040938401528982526002815291902082518051919261052c928492909101906106d4565b50602082810151805161054592600185019201906106d4565b5060408281015160028301556060909201516003909101805460ff19169115159190911790555186907f9d7df656e82f61ec711b505bb42bd23b2398708b142cee9c3e12e36e463f2ca3906105a1908490879087908a90610959565b60405180910390a2505050505050565b60008181526002602052604081206003015460ff1661060c5760405162461bcd60e51b815260206004820152601760248201527609cde40a0a28640e6d2cedcc2e8eae4ca40ccdee440e8f604b1b60448201526064016101c6565b506000908152600260208190526040909120015490565b6000546001600160a01b0316331461066a5760405162461bcd60e51b815260206004820152600a60248201526927b7363c9037bbb732b960b11b60448201526064016101c6565b6001600160a01b0381166106b25760405162461bcd60e51b815260206004820152600f60248201526e496e76616c6964206164647265737360881b60448201526064016101c6565b600180546001600160a01b0319166001600160a01b0392909216919091179055565b8280546106e0906108fc565b90600052602060002090601f0160209004810192826107025760008555610748565b82601f1061071b57805160ff1916838001178555610748565b82800160010185558215610748579182015b8281111561074857825182559160200191906001019061072d565b50610754929150610758565b5090565b5b808211156107545760008155600101610759565b60006020828403121561077f57600080fd5b5035919050565b6000815180845260005b818110156107ac57602081850181015186830182015201610790565b818111156107be576000602083870101525b50601f01601f19169290920160200192915050565b6060815260006107e66060830186610786565b82810360208401526107f88186610786565b915050826040830152949350505050565b60008083601f84011261081b57600080fd5b50813567ffffffffffffffff81111561083357600080fd5b60208301915083602082850101111561084b57600080fd5b9250929050565b60008060008060006060868803121561086a57600080fd5b85359450602086013567ffffffffffffffff8082111561088957600080fd5b61089589838a01610809565b909650945060408801359150808211156108ae57600080fd5b506108bb88828901610809565b969995985093965092949392505050565b6000602082840312156108de57600080fd5b81356001600160a01b03811681146108f557600080fd5b9392505050565b600181811c9082168061091057607f821691505b6020821081141561093157634e487b7160e01b600052602260045260246000fd5b50919050565b8385823760008482016000815283858237600093019283525090949350505050565b848152606060208201528260608201528284608083013760006080848301015260006080601f19601f86011683010190508260408301529594505050505056fea2646970667358221220e84830c7efc451970bda777a4328a45d0134f4f6bc0ee9c3bc6ad54811593c4864736f6c634300080a0033"
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"transactionId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"signatureHash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"algorithm\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"signatureSize\",\"type\":\"uint256\"}],\"name\":\"PQCSignatureStored\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"txId\",\"type\":\"uint256\"}],\"name\":\"getPQCSignature\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"algorithm\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"signatureHash\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"txId\",\"type\":\"uint256\"}],\"name\":\"getPQCSignatureHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"interbankContract\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_interbank\",\"type\":\"address\"}],\"name\":\"setInterbankContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"txId\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"pqcSignature\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"algorithm\",\"type\":\"string\"}],\"name\":\"storePQCSignature\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"txId\",\"type\":\"uint256\"}],\"name\":\"transactionHasPQCSignature\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Contract ri\\u00eang \\u0111\\u1ec3 l\\u01b0u tr\\u1eef PQC signature on-chain cho t\\u1eebng transaction.      M\\u1ee5c ti\\u00eau: gi\\u1ea3m k\\u00edch th\\u01b0\\u1edbc bytecode c\\u1ee7a InterbankTransfer (tr\\u00e1nh v\\u01b0\\u1ee3t EIP-170)      nh\\u01b0ng v\\u1eabn \\u0111\\u1ea3m b\\u1ea3o requirement: l\\u01b0u PQC signature / hash on-chain.\",\"kind\":\"dev\",\"methods\":{\"getPQCSignature(uint256)\":{\"details\":\"L\\u1ea5y full PQC signature + algorithm + hash cho m\\u1ed9t transaction\"},\"getPQCSignatureHash(uint256)\":{\"details\":\"L\\u1ea5y hash c\\u1ee7a PQC signature cho m\\u1ed9t transaction\"},\"setInterbankContract(address)\":{\"details\":\"Set \\u0111\\u1ecba ch\\u1ec9 InterbankTransfer contract (ch\\u1ec9 owner)\"},\"storePQCSignature(uint256,bytes,string)\":{\"details\":\"L\\u01b0u PQC signature cho m\\u1ed9t transaction (ch\\u1ec9 \\u0111\\u01b0\\u1ee3c g\\u1ecdi t\\u1eeb InterbankTransfer)\",\"params\":{\"algorithm\":\"T\\u00ean thu\\u1eadt to\\u00e1n PQC (vd: \\\"Dilithium3\\\")\",\"pqcSignature\":\"PQC signature (bytes)\",\"txId\":\"Transaction ID trong InterbankTransfer\"}},\"transactionHasPQCSignature(uint256)\":{\"details\":\"Ki\\u1ec3m tra transaction c\\u00f3 PQC signature hay kh\\u00f4ng\"}},\"title\":\"PQCSignatureRegistry\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"PQCSignatureRegistry.sol\":\"PQCSignatureRegistry\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"PQCSignatureRegistry.sol\":{\"keccak256\":\"0xea69cdf116dab514019248a100abf915225ff4960326be40e220184b4dc47fcc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f3bc1c662a6b68f2d00f99c55fc43e945e7ac486e66c3dfd7c5b2198ca5a7470\",\"dweb:/ipfs/QmSYS2U1EwqaYZzhxZRwBqxWfgEEXrJ6EHkFqwoNkdWPFY\"]}},\"version\":1}"
+}
